@@ -10,22 +10,21 @@ int evalRPN(char **tokens, int tokensSize) {
     for ( int i = 0; i < tokensSize; i++ ) {
         char *token = tokens[i];
 
-        if ( strcmp( token, "+" ) == 0 ) {
+        if ( strcmp( token, "+" ) == 0 || strcmp( token, "-" ) == 0 || 
+            strcmp( token, "*" ) == 0 || strcmp( token, "/" ) == 0 ) {
+            
             int b = nums.item[nums.top--];
             int a = nums.item[nums.top--];
-            nums.item[++nums.top] = a + b;
-        } else if ( strcmp( token, "-" ) == 0 ) {
-            int b = nums.item[nums.top--];
-            int a = nums.item[nums.top--];
-            nums.item[++nums.top] = a - b;
-        } else if ( strcmp( token, "*" ) == 0 ) {
-            int b = nums.item[nums.top--];
-            int a = nums.item[nums.top--];
-            nums.item[++nums.top] = a * b;
-        } else if ( strcmp( token, "/" ) == 0 ) {
-            int b = nums.item[nums.top--];
-            int a = nums.item[nums.top--];
-            nums.item[++nums.top] = a / b;
+
+            if( strcmp( token, "+" ) == 0 ) {
+                    nums.item[++nums.top] = a + b;
+            } else if( strcmp( token, "-" ) == 0 ) {
+                    nums.item[++nums.top] = a - b;
+            } else if( strcmp( token, "*" ) == 0 ) {
+                    nums.item[++nums.top] = a * b;
+            } else if( strcmp( token, "/" ) == 0 ) {
+                    nums.item[++nums.top] = a / b;
+            }
         } else {
             nums.item[++nums.top] = atoi( token );
         }
