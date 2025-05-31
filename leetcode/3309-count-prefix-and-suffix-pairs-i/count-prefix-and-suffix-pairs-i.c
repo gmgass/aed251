@@ -2,16 +2,11 @@ bool isPrefixAndSuffix( const char *str1, const char *str2 ) {
     int len1 = strlen( str1 );
     int len2 = strlen( str2 );
 
-    if ( len1 > len2 ) {
+    if ( len1 > len2 || strncmp( str1, str2, len1 ) != 0 ||
+        strncmp( str1, ( str2 + len2 - len1 ), len1 ) != 0 ) {
         return false;
     }
-    if ( strncmp( str1, str2, len1 ) != 0 ) {
-        return false;
-    }
-    if (strncmp( str1, ( str2 + len2 - len1 ), len1 ) != 0 ) {
-        return false;
-    }
-    
+
     return true;
 }
 
