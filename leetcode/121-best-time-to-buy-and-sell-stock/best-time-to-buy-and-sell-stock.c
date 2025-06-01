@@ -1,14 +1,17 @@
-int maxProfit(int* n, int pricesSize) {
-    int profit = 0;
-    int buy = 0;
-    
-    for ( int sell = 1; sell < pricesSize; sell++ ) {
-        if ( n[sell] <= n[buy] ) {
-            buy = sell;
+int maxProfit(int* prices, int pricesSize) {
+    int maxProfit = 0;
+    int buyPrice = prices[0];
+
+    for ( int i = 1; i < pricesSize; i++ ) {
+        if ( buyPrice > prices[i] ) {
+            buyPrice = prices[i];
         } else {
-            profit = fmax( profit, ( n[sell] - n[buy] ));
+            int profit = prices[i] - buyPrice;
+            if ( profit > maxProfit ) {
+                maxProfit = profit;
+            }
         }
     }
 
-    return profit;
+    return maxProfit;
 }
